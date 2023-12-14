@@ -11,6 +11,7 @@ public class GameControl : MonoBehaviour
     public TextMeshProUGUI ScoreText;
     public static GameControl instance;
     public bool gameOver = false;
+    public float scrollSpeed = -1.5f;
 
     // Start is called before the first frame update
     void Awake()
