@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameControl : MonoBehaviour
 {
     public static GameControl Instance;
     public GameObject gameOverText;
     public TextMeshProUGUI ScoreText;
+    public Text scoreText;
     public static GameControl instance;
     public bool gameOver = false;
     public float scrollSpeed = -1.5f;
+
+    private int score = 0;
 
     // Start is called before the first frame update
     void Awake()
@@ -33,6 +37,16 @@ public class GameControl : MonoBehaviour
         {
             SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
         }
+    }
+
+    public void QbbyScored()
+    {
+        if (gameOver)
+        {
+            return;
+        }
+        score++;
+        scoreText.text = "Score" + score.ToString();
     }
     public void BirdDied()
     {
