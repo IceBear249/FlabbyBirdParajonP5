@@ -16,8 +16,13 @@ public class GameControl : MonoBehaviour
     public float scrollSpeed = -1.5f;
 
     private int score = 0;
-
+    public AudioClip scoresound;
+    AudioSource audioSource;
     // Start is called before the first frame update
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
     void Awake()
     {
         if (instance == null)
@@ -33,9 +38,9 @@ public class GameControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gameOver == true && Input.GetMouseButtonDown(0))
+        if (gameOver == true && Input.GetMouseButtonDown(0))
         {
-            SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
@@ -46,11 +51,17 @@ public class GameControl : MonoBehaviour
             return;
         }
         score++;
-        scoreText.text = "Score" + score.ToString();
+        ScoreText.text = "Score" + score.ToString();
+        PlaySound(scoresound);
     }
     public void BirdDied()
     {
         gameOverText.SetActive(true);
         gameOver = true;
+    }
+    public void PlaySound(AudioClip audioClip)
+    {
+        audioSource.PlayOneShot(audioClip);
+
     }
 }

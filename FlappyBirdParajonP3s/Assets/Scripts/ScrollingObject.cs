@@ -18,6 +18,7 @@ public class ScrollingObject : MonoBehaviour
         if (GameControl.instance.gameOver == true)
         {
             rb2d.velocity = Vector2.zero;
+            
         }
     }
 }
